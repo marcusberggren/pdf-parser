@@ -1,15 +1,11 @@
 from dataclasses import dataclass, field
+from typing import Optional, List
+from pydantic import BaseModel
 
-@dataclass
-class Coordinates:
+class Coordinates(BaseModel):
+    x0: Optional[float]
     y0: float
-    y1: float
-
-@dataclass
-class Rectangle:
-    x0: float
-    y0: float
-    x1: float
+    x1: Optional[float]
     y1: float
 
     def update(self, y):
@@ -20,6 +16,9 @@ class Rectangle:
             self.y1 + y
             )
 
-@dataclass
-class Data:
+
+class Rectangle(BaseModel):
+    l1: list = field(default_factory=list)
+
+class Data(BaseModel):
     l1: list = field(default_factory=list)
